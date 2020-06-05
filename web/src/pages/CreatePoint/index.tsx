@@ -7,6 +7,8 @@ import { FiArrowLeft } from 'react-icons/fi'
 import {Map, TileLayer, Marker} from 'react-leaflet'
 import {LeafletMouseEvent} from 'leaflet'
 import api from '../../services/api'
+import MyDropzone from '../../components/Dropzone'
+import Dropzone from 'react-dropzone'
 
 interface Item{
     id:number,
@@ -40,6 +42,7 @@ const CreatePoint = () => {
     const[selectedCity, setSelectedCity] = useState('0')
     const [selectedItem, setSelectedItem] = useState<number[]>([])
     const[selectedPosition, setSelectedPosition] = useState<[number,number]>([0, 0])
+    const [selectedFile, setselectedFile] = useState<File>()
 
     const history = useHistory()
     useEffect(() => {
@@ -144,6 +147,7 @@ const CreatePoint = () => {
             <form onSubmit = {handleSubmit}>
                 <h1>Cadastro do <br />ponto de Coleta</h1>
 
+                <MyDropzone onFileUploaded={setselectedFile}></MyDropzone>
                 <fieldset>
                     <legend>
                         <h2>Dados</h2>
