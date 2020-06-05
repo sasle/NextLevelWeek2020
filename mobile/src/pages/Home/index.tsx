@@ -2,21 +2,14 @@ import React from 'react'
 import { View, ImageBackground, Image, StyleSheet, Text} from 'react-native'
 import {RectButton} from 'react-native-gesture-handler'
 import {Feather as Icon} from '@expo/vector-icons'
-import { AppLoading } from 'expo'
-import { StatusBar } from 'react-native'
-import { Ubuntu_700Bold, useFonts } from '@expo-google-fonts/ubuntu'
-import { Roboto_400Regular, Roboto_500Medium } from '@expo-google-fonts/roboto'
 import App from '../../../App'
+import {useNavigation} from '@react-navigation/native'
 
 const Home = () => {
-    const fontsLoaded = useFonts({
-        Roboto_400Regular,
-        Roboto_500Medium,
-        Ubuntu_700Bold
-    })
+    const navigation = useNavigation()
 
-    if (!fontsLoaded) {
-        return <AppLoading></AppLoading>
+    function handleNavigateToPoints(){
+        navigation.navigate('Points')
     }
     return (
         <ImageBackground  source={require('../../assets/home-background.png')} imageStyle={{width: 274, height:368}}  style={styles.container}>
@@ -26,7 +19,7 @@ const Home = () => {
                 <Text style={styles.description}>Ajudamos pessoas a encontrarem pontos de coleta de forma eficiente.</Text>
             </View>
             <View style={styles.footer}>
-                <RectButton style={styles.button} onPress={() => {}}>
+                <RectButton style={styles.button} onPress={() => {handleNavigateToPoints()}}>
                     <View style={styles.buttonIcon}><Text><Icon name="arrow-right" color="#FFF" size={24}></Icon></Text></View>        
                     <Text style={styles.buttonText}>Entrar</Text>
                 </RectButton>
@@ -40,7 +33,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         padding: 32,
-        backgroundColor: '#F0F0F5'
     },
 
     main: {
